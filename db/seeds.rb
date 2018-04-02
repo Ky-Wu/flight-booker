@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+airport_codes = ['ATL','LAX','ORD','DFW','JFK','DEN','SFO',
+         'LAS','CLT','SEA','PHX','MIA','MCO','IAH']
+airports = []
+airport_codes.each do |code|
+  airport = Airport.create(code: code)
+  airports << airport
+end
+
+airports.each do |from_airport|
+  airports.each do |to_airport|
+    unless from_airport == to_airport
+      Flight.create(to_airport: to_airport, from_airport: from_airport,
+                    date: rand(1.year).seconds.from_now, duration: rand(5..600))
+    end
+  end
+end
