@@ -6,6 +6,10 @@ class FlightsController < ApplicationController
     @airports = Airport.all
     dates = Flight.future.distinct.pluck(:date)
     @date_options = dates.map { |date| [ formatted_date(date), date ] }
+    unless flight_params.empty?
+     @flights = Flight.where(flight_params).try(:on_day, params[:date]) 
+     @num_tickets = params[:num_tickets].to_s
+    end
   end
 
   # GET /flights/1
@@ -55,7 +59,8 @@ class FlightsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def flight_params
-      params.fetch(:flight, {})
+      params.permit(:to_airport_id, :from_airport_id, 
+                    :num_tickets, :date).except(:num_tickets, :date)
     end
 
     # Format a date.

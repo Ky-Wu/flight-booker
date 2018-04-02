@@ -1,3 +1,26 @@
 <h1>Flights</h1>
 
 <%= render 'search_form' %>
+
+<% if @flights %>
+  <h1> Available Flights: </h1>
+  <%= form_tag(new_booking_path, method: :get) do %>
+
+    <%= hidden_field_tag :num_passengers, @num_tickets %>
+
+    <% @flights.each do |flight| %>
+      <h3><%= flight.from_airport.code %> to <%=flight.to_airport.code %></h3>
+
+      <p>Time of departure: <%=flight.date.strftime("%l:%M %p %m/%-d/%y") %></p>
+
+      <p>Duration: <%= flight.formatted_duration %> </p>
+      
+      <%= label_tag :flight_id, "Book #{ pluralize(@num_tickets, 'person') }" %>
+      <%= radio_button_tag :flight_id, flight.id %> 
+    <% end %>
+
+    <%= submit_tag "Book Flight" %>
+
+  <% end %>
+
+<% end %>
