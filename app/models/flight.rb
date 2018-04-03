@@ -1,6 +1,8 @@
 class Flight < ApplicationRecord
   belongs_to :from_airport, class_name: "Airport"
   belongs_to :to_airport,   class_name: "Airport"
+  has_many :bookings
+  has_many :passengers, through: :bookings
   default_scope { order(date: :asc) }
   scope :future, -> { where("date > ?", Time.now) }
   scope :on_day, ->(date) {

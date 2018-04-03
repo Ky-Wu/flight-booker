@@ -1,2 +1,12 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h1>Booking for <%= @booking.passengers.pluck(:name).join(', ') %></h1>
+
+<h2>From <%= @booking.from_airport.code %> to <%= @booking.to_airport.code %></h2>
+
+<h2>Time: <%= formatted_datetime(@booking.date) %></h2>
+
+<h3>Passengers:<h3>
+<ol>
+  <% @booking.passengers.each do |passenger| %>
+    <li><%= passenger.name %>
+  <% end %>
+</ol>

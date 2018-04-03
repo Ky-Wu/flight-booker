@@ -1,0 +1,25 @@
+<%= form_for(@booking) do |f| %>
+
+  <h3>Flight Information:</h3>
+  <p>From <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %></p>
+  <p>When: <%= formatted_datetime(@flight.date) %></p>
+
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%= f.hidden_field :date, value: @flight.date %>
+
+  <% @booking.passengers.each_with_index do |passenger, index| %>
+    <h4><%= (index + 1).ordinalize %> Passenger:</h4> 
+    <%= f.fields_for :passengers, passenger do |passenger_form| %>
+
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+      
+      <%= passenger_form.label :email %>
+      <%= passenger_form.text_field :email %>
+    
+   <% end %>
+  <% end %>
+  
+  <%= f.submit "Book flight" %>
+
+<% end %>

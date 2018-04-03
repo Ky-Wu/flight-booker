@@ -6,12 +6,12 @@
   <h1> Available Flights: </h1>
   <%= form_tag(new_booking_path, method: :get) do %>
 
-    <%= hidden_field_tag :num_passengers, @num_tickets %>
+    <%= hidden_field_tag :num_tickets, @num_tickets %>
 
     <% @flights.each do |flight| %>
       <h3><%= flight.from_airport.code %> to <%=flight.to_airport.code %></h3>
 
-      <p>Time of departure: <%=flight.date.strftime("%l:%M %p %m/%-d/%y") %></p>
+      <p>Time of departure: <%= formatted_datetime(flight.date) %></p>
 
       <p>Duration: <%= flight.formatted_duration %> </p>
       
