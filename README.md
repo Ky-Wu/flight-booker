@@ -1,24 +1,11 @@
-# README
+# A Sample Application: Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## This application was made for educational purposes only and obviously does
+## not have all the features of a full web application that one might expect.
 
-Things you may want to cover:
+This project was created in an attempt to learn more about creating and structuring advanced Ruby on Rails forms with nested attributes, handling nested attributes in the controller, and Rails associations. Clearly, this app was no lesson on front-end web design.
 
-* Ruby version
+If I'm to be honest, this project was also a painful lesson
+about dates, which I find to be incredibly hard to work with using Rails.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you need to contact me, contact me through email at kylelinwu@gmail.com
